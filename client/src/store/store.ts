@@ -1,7 +1,10 @@
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
+import productsReducer from './reducers/productsReducer';
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  productsReducer,
+});
 const store = createStore(rootReducer, composeWithDevTools(applyMiddleware()));
 
 export default store;

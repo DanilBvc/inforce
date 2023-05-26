@@ -59,7 +59,8 @@ export const create = async (request, response) => {
       imageUrl: request.body.imageUrl,
       size: request.body.size,
       count: request.body.count,
-      comments: request.body.comments
+      comments: request.body.comments,
+      id: uuidv4()
     })
     const product = await doc.save()
     response.json(product)

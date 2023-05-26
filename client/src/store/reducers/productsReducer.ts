@@ -17,12 +17,19 @@ const productsReducer = (
       }
       return [payload];
     }
-    case productsActions.UPDATE_PRODUCT: {
+    case productsActions.ADD_PRODUCT: {
       const payload = action.payload;
       if (Array.isArray(payload)) {
-        return [...initialState, ...payload];
+        return [...state, ...payload];
       }
-      return [...initialState, payload];
+      return [...state, payload];
+    }
+    case productsActions.DELETE_PRODUCT: {
+      const payload = action.payload;
+      if (Array.isArray(payload)) {
+        return state;
+      }
+      return state.filter((product) => product !== payload);
     }
 
     default:

@@ -3,8 +3,11 @@ import { commentIcon } from '../../assets/global';
 import { productComponentProps } from './productComponentType';
 import SubmitButton from '../generall/submitButton/submitButton';
 import './productComponent.scss';
-const ProductsComponent: FC<productComponentProps> = ({ product }) => {
+import { useNavigate } from 'react-router-dom';
+const ProductsComponent: FC<productComponentProps> = ({ product, close }) => {
   const { imageUrl, name, size, comments, count, weight } = product;
+  const navigate = useNavigate();
+
   return (
     <div className="product-items">
       <img src={imageUrl} alt={name} />
@@ -20,7 +23,20 @@ const ProductsComponent: FC<productComponentProps> = ({ product }) => {
           {comments.length}
         </div>
       </div>
-      <SubmitButton text={'delete'} />
+      <div className="buttons-wrapper">
+        <SubmitButton
+          text={'delete'}
+          onClick={() => {
+            close(product);
+          }}
+        />
+        <SubmitButton
+          text={'descriptiion'}
+          onClick={() => {
+            navigate(`/product/${product.id}`);
+          }}
+        />
+      </div>
     </div>
   );
 };

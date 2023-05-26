@@ -2,9 +2,9 @@ import Product from '../models/product.js'
 import { v4 as uuidv4 } from 'uuid';
 export const remove = async (request, response) => {
   try {
-    const postId = request.params.id
+    const productId = request.params.id
     const doc = await Product.findOneAndDelete({
-      _id: postId
+      id: productId
     })
     if (!doc) {
       return response.status(404).json({
@@ -25,7 +25,7 @@ export const remove = async (request, response) => {
 export const getOne = async (request, response) => {
   try {
     const productId = request.params.id
-    const doc = await Product.findOne({ _id: productId }).exec();
+    const doc = await Product.findOne({ id: productId }).exec();
     if (!doc) {
       return response.status(404).json({
         message: 'product not found'
@@ -33,6 +33,7 @@ export const getOne = async (request, response) => {
     }
     response.json(doc)
   } catch (err) {
+    console.log(err)
     response.status(500).json({
       message: 'error with fetching product by id'
     })
@@ -44,7 +45,6 @@ export const getAll = async (request, response) => {
     const products = await Product.find().populate('name').exec()
     response.json(products)
   } catch (err) {
-    console.log(err)
     response.status(500).json({
       message: 'error with fetching products'
     })
@@ -65,7 +65,6 @@ export const create = async (request, response) => {
     const product = await doc.save()
     response.json(product)
   } catch (err) {
-    console.log(err)
     response.status(500).json({
       message: 'error with creating product'
     })
@@ -89,7 +88,6 @@ export const update = async (request, response) => {
     })
     response.json({ success: true })
   } catch (err) {
-    console.log(err)
     return response.status(500).json({
       message: 'failed to update product'
     })

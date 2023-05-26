@@ -1,5 +1,5 @@
 export type productModel = {
-  id: number;
+  id: string;
   imageUrl: string;
   name: string;
   count: number;

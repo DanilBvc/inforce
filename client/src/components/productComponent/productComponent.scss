@@ -2,6 +2,11 @@
   border: 2px solid #4970b5;
   padding: 10px;
 
+  img {
+    max-width: 5vw;
+    max-height: 5vw;
+  }
+
   .product-item-info {
     .product-item-name {
       font-size: 2vw;

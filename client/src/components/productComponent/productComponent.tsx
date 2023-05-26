@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { commentIcon } from '../../assets/global';
 import { productComponentProps } from './productComponentType';
 import SubmitButton from '../generall/submitButton/submitButton';
-
+import './productComponent.scss';
 const ProductsComponent: FC<productComponentProps> = ({ product }) => {
   const { imageUrl, name, size, comments, count, weight } = product;
   return (

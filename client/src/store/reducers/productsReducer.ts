@@ -17,8 +17,12 @@ const productsReducer = (
       }
       return [payload];
     }
-    case productsActions.DELETE_PRODUCT: {
-      return [];
+    case productsActions.UPDATE_PRODUCT: {
+      const payload = action.payload;
+      if (Array.isArray(payload)) {
+        return [...initialState, ...payload];
+      }
+      return [...initialState, payload];
     }
 
     default:
